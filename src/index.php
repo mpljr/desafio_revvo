@@ -39,6 +39,35 @@ $courses = $course->read();
         </div>
     </div>
 
+    <!-- Modal de Adicionar Curso -->
+    <div class="modal" id="addCourseModal">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="addCourseModalClose">
+                <img src="https://api.iconify.design/mdi:close.svg" alt="Fechar">
+            </button>
+            <h2 class="modal__title">Adicionar Novo Curso</h2>
+            <form id="addCourseForm" class="form">
+                <div class="form__group">
+                    <label for="courseTitle" class="form__label">Título</label>
+                    <input type="text" id="courseTitle" name="title" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="courseDescription" class="form__label">Descrição</label>
+                    <textarea id="courseDescription" name="description" class="form__input" required></textarea>
+                </div>
+                <div class="form__group">
+                    <label for="courseImage" class="form__label">URL da Imagem</label>
+                    <input type="url" id="courseImage" name="image_url" class="form__input" required>
+                </div>
+                <div class="form__actions">
+                    <button type="button" class="button button--secondary" id="cancelAddCourse">Cancelar</button>
+                    <button type="submit" class="button">Adicionar Curso</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <header class="header">
         <div class="container header__container">
             <a href="/" class="logo">
@@ -115,7 +144,7 @@ $courses = $course->read();
                     <?php endwhile; ?>
 
                     <div class="course-card course-card--add">
-                        <button class="course-card__add">
+                        <button class="course-card__add" id="addCourseButton">
                             <img src="https://api.iconify.design/mdi:plus.svg" alt="">
                             <span>ADICIONAR<br>CURSO</span>
                         </button>

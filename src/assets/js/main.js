@@ -209,9 +209,72 @@ class FirstAccessModal {
     }
   }
   
+  // Add Course Modal
+  class AddCourseModal {
+    constructor() {
+      this.modal = document.getElementById('addCourseModal');
+      this.form = document.getElementById('addCourseForm');
+      this.openButton = document.getElementById('addCourseButton');
+      this.closeButton = document.getElementById('addCourseModalClose');
+      this.cancelButton = document.getElementById('cancelAddCourse');
+      
+      this.init();
+    }
+  
+    init() {
+      this.openButton.addEventListener('click', () => this.show());
+      this.closeButton.addEventListener('click', () => this.hide());
+      this.cancelButton.addEventListener('click', () => this.hide());
+      this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+  
+    show() {
+      this.modal.classList.add('modal--visible');
+      document.body.style.overflow = 'hidden';
+    }
+  
+    hide() {
+      this.modal.classList.remove('modal--visible');
+      document.body.style.overflow = '';
+      this.form.reset();
+    }
+  
+    async handleSubmit(e) {
+      e.preventDefault();
+  
+      const formData = new FormData(this.form);
+      const data = {
+        title: formData.get('title'),
+        description: formData.get('description'),
+        image_url: formData.get('image_url')
+      };
+  
+      try {
+        const response = await fetch('/api/courses/create.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+  
+        if (!response.ok) {
+          throw new Error('Erro ao adicionar curso');
+        }
+  
+        // Recarregar a página para mostrar o novo curso
+        window.location.reload();
+      } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao adicionar curso. Por favor, tente novamente.');
+      }
+    }
+  }
+  
   // Initialize components
   document.addEventListener('DOMContentLoaded', () => {
     new FirstAccessModal();
     new HeroSlider();
     new UserMenu();
+    new AddCourseModal();
   });

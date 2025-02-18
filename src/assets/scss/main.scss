@@ -133,6 +133,43 @@ img {
     width: 100%;
     text-align: center;
   }
+
+  &--secondary {
+    background-color: #666;
+  }
+}
+
+// Form styles
+.form {
+  &__group {
+    margin-bottom: 20px;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
 }
 
 // Header
